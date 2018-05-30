@@ -9,3 +9,7 @@ https://www.redmine.org/projects/redmine/wiki/How_to_Install_Redmine_on_CentOS_(
 #  Nexus zip handling
 https/sdqali.in/blog/2017/08/17/uploading-a-standalone-artifact-to-nexus-3/
 https://sanjeevshrestha.com/2017/02/16/uploading-artifact-to-nexus-without-maven/
+
+# Select Between Strings
+
+awk '/CHANGED_FILES_START/{flag=1; next} /CHANGED_FILES_END/{flag=0} flag' file
