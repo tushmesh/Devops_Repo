@@ -13,3 +13,7 @@ https://sanjeevshrestha.com/2017/02/16/uploading-artifact-to-nexus-without-maven
 # Select Between Strings
 
 awk '/CHANGED_FILES_START/{flag=1; next} /CHANGED_FILES_END/{flag=0} flag' file
+
+## SOA
+
+http://www.oracle.com/technetwork/middleware/soasuite/11gthebook-101473.html
