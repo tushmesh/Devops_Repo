@@ -17,3 +17,6 @@ awk '/CHANGED_FILES_START/{flag=1; next} /CHANGED_FILES_END/{flag=0} flag' file
 ## SOA
 
 http://www.oracle.com/technetwork/middleware/soasuite/11gthebook-101473.html
+
+## SOA maven
+https://docs.oracle.com/middleware/1221/soasuite/develop/GUID-ACCD1A41-DA8A-48EA-BDDD-B6B9EE861C04.htm#SOASE88427
