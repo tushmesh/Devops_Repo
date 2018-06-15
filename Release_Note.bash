@@ -1,3 +1,4 @@
+
 #!/bin/bash
 #This script will generate the release notes from the commits
 #It will discard prints oF automatic Merges and Pull Requests commits. 
@@ -25,3 +26,4 @@ fi
 done
 
 # git ls-files --other --exc
+#  git status | grep modified | grep new file || git status | grep -v deleted
