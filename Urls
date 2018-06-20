@@ -1,4 +1,5 @@
 ### Git Server Installation on Linux
+
 https://www.linux.com/learn/how-run-your-own-git-server
 # GitWeb
 https://git-scm.com/book/en/v1/Git-on-the-Server-GitWeb
@@ -40,3 +41,6 @@ https://trac.edgewall.org/wiki/TracTicketsCustomFields
 
 # Tokenization
 https://docs.oracle.com/middleware/12211/biee/BIEMG/GUID-518B3560-3920-4FD5-80F7-D17DFB1CAEBC.htm#t2p_password_chg
+
+## Changes for the code changes made in Git
+git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git log --author="$name" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }' -; done
