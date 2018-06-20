@@ -1,5 +1,6 @@
+DJ.xml
+abc.xml
 changes.txt
 changes1.txt
 delete_script.sh
-file1.txt
-file2.txt
+hello.xml

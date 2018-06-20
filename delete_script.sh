@@ -22,16 +22,21 @@
 cd /c/Users/gopal.krushna.sahu/GitRepo/Devops_Repo
 
 sed '/FILES_CHANGED_START/,/FILES_CHANGED_END/ { //!d }' file1.txt > file2.txt
+
+#echo "Enter file name to check-in, enter multiple files with blank space"
+#read $line
+#echo "Do you want to continue Y/N"
 git add .
 git status --short > changes.txt
 
 grep -i "^[A|M]" changes.txt | awk '{print $2}' > changes1.txt
 
-while read line; do
+#        sed -i '/FILES_CHANGED_START/r changes1.txt' file2.txt
+git status 
+echo "Enter File name in Sequence copy paste from the able modified file"
+read filename
 
-	echo $line
-        sed -i '/FILES_CHANGED_START/,/FILES_CHANGED_END/ { //!p }' file2.txt
-
-	done < changes1.txt
+echo "$filename" | tr " " "\n" >> file3.txt 
+ sed -i '/FILES_CHANGED_START/r file3.txt' file2.txt
 
 #############################################################################

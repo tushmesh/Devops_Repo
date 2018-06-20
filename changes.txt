@@ -1,5 +1,6 @@
-AM changes.txt
-A  changes1.txt
-A  delete_script.sh
-A  file1.txt
-A  file2.txt
+A  DJ.xml
+A  abc.xml
+MM changes.txt
+M  changes1.txt
+M  delete_script.sh
+A  hello.xml
