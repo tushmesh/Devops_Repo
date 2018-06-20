@@ -1,6 +1,0 @@
-A  DJ.xml
-A  abc.xml
-MM changes.txt
-M  changes1.txt
-M  delete_script.sh
-A  hello.xml
