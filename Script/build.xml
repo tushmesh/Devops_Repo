@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ConfigExport">
+
+
+   <!-- <property name="weblogic.home" value="/dxppat1f/products/middleware/wlserver_10.3" />
+   <property name="osb.home" value="/dxppat1f/products/middleware/Oracle_OSB1" />
+   <property file="build.properties"/> -->
+
+   <!-- <property name="metadata.dir" value="${workspace.dir}/.metadata"/> -->
+
+   <!--<property name="domain.export.script" value="export.py" />-->
+   
+   
+   <property name="domain.import.script" value="import.py" />
+   <property environment="env"/>
+   <property name="fmw.home" value="${env.FMW_HOME}" />
+   <property name="weblogic.home" value="${fmw.home}/wlserver_10.3" />
+   <property name="osb.home" value="${fmw.home}/Oracle_OSB1" />
+	
+    <input message="Please enter Admin Username:" addproperty="wls.username"/>
+	<input message="Please enter Admin Password:" addproperty="wls.password"/>
+	<input message="Please enter Admin URL:" addproperty="wls.server"/>
+	<input message="Please enter project directory:" addproperty="import.projectdir"/>
+	<input message="Please enter project name:" addproperty="import.projectname"/>
+    <input message="Please enter Custom File:" addproperty="import.customFile"/>
+	<property name="settingsFile" location="${basedir}/config_settings.xml" />
+	
+	<property name="import.jar" location="${import.projectdir}/Deploy/${import.projectname}.jar" /> 
+	<property name="import.customFile" location="${import.projectdir}/${import.projectname}_cfgplan.xml" /> 
+    
+	<path id="library.osb">
+	   <fileset dir="${fmw.home}/Oracle_OSB1/modules">
+         <include name="com.bea.common.configfwk_1.7.0.0.jar"/>
+       </fileset>
+	    <fileset dir="${fmw.home}/modules">
+         <include name="com.bea.core.xml.xmlbeans_2.2.0.0_2-5-1.jar"/>
+       </fileset>
+       <fileset dir="${fmw.home}/wlserver_10.3/server/lib">
+         <include name="weblogic.jar"/>
+       </fileset>
+       <fileset dir="${fmw.home}/Oracle_OSB1/lib">
+         <include name="alsb.jar"/>
+       </fileset>
+    </path>
+
+   <taskdef name="wlst" 
+            classpathref="library.osb" 
+            classname="weblogic.ant.taskdefs.management.WLSTTask"/>   
+
+   <taskdef name="wlst" classpathref="library.osb"  classname="weblogic.ant.taskdefs.management.WLSTTask"/>   
+
+   <taskdef name="configjar" classname="com.bea.alsb.tools.configjar.ant.ConfigJarTask" /> 
+
+    <target name="init">
+       <property name="task.debug" value="false" /> 
+       <property name="task.failonerror" value="true" /> 
+       <property name="task.errorproperty" value="" /> 
+	   <delete file="${import.projectdir}/Deploy/${import.projectname}.jar"  /> 
+    </target>
+
+	<target name="prepareConfigSettingFile">
+	
+	 <echo> current folder ${basedir}</echo>
+	   <copy file="${basedir}/config_settings_seed.xml" tofile="${basedir}/config_settings.xml" overwrite="true" /> 
+	   <replace file="${basedir}/config_settings.xml" token="$PROJECT_HOME$" value="${import.projectdir}" /> 
+	   <replace file="${basedir}/config_settings.xml" token="$PROJECT_NAME$" value="${import.projectname}" /> 
+    </target>
+	
+    <target name="compile" depends="init,prepareConfigSettingFile">
+       <fail unless="settingsFile"/>
+       <configjar debug="${task.debug}" 
+                  failonerror="${task.failonerror}" 
+                  errorProperty="${task.errorproperty}" 
+                  settingsFile="${settingsFile}" />
+    </target>
+	
+   <target name="importToOSB">
+		<echo message="-----${osb.home}-----" />
+        <wlst fileName="${domain.import.script}" debug="true" failOnError="true" classpathref="library.osb"  
+              arguments="${wls.username} ${wls.password} ${wls.server} ${import.projectname} ${import.jar} ${import.customFile}">  
+         <script>  
+           adminUser=sys.argv[1]  
+           adminPassword=sys.argv[2]  
+           adminUrl=sys.argv[3]
+
+           passphrase = "osb"
+
+           project=sys.argv[4]
+           importJar=sys.argv[5]
+           customFile=sys.argv[6]
+
+           connect(adminUser,adminPassword,adminUrl) 
+           domainRuntime()
+          </script>
+        </wlst>
+   </target>
+
+</project>
+
