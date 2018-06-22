@@ -1,4 +1,4 @@
-
+## Added new Comment
 
 #!/bin/bash
 #This script will generate the release notes from the commits
