@@ -1,7 +1,0 @@
-Please find the below url for REDMINE installation on linux.
-
-https://www.redmine.org/projects/redmine/wiki/How_to_Install_Redmine_on_CentOS_(Detailed)
-
-https://www.redmine.org/ 
-
-
