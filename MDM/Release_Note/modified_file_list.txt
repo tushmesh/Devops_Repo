@@ -1,0 +1,12 @@
+A  ReleaseNote.txt
+A  ReleaseNotefinal.txt
+AM modified_file_list.txt
+AD modified_file_list_final.txt
+AD sequence.txt
+ D ../../delete_script.sh
+?? ../Algorithm/
+?? ../Algorithm_Type/
+?? ../Application_Service/
+?? ../Batch_Control/
+?? ../Business_Object/
+?? ../../release_note_seq.sh

@@ -1,0 +1,22 @@
+hello motto
+one plus mobile
+samsung mobile
+Accenture software services
+Accenture business
+Accenture Digital
+
+FILES_CHANGED_START
+hello.xml
+bye.xml
+falanadhimkana.xml
+sorted.xml
+jbaatt.xml
+FILES_CHANGED_END
+
+Accenture tester
+Infosy tester
+Accenture Developer
+Accenture communities
+yammer group
+falana dhimkana
+
